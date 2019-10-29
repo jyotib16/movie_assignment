@@ -1,0 +1,190 @@
+/* 
+Version : 1.0.0 
+Author : Jyoti Bhamrah
+Date : 24 Oct 2019 
+*/
+
+body{
+	font-family: calibri;
+}
+
+.mt-0{
+	margin-top:0;
+}
+.mb-0{
+	margin-bottom:0;
+}
+.ml-0{
+	margin-left:0;
+}
+.mr-0{
+	margin-right:0;
+}
+.pull-left{
+	float: left;
+}
+.pull-right{
+	float:right;
+}
+.text-danger{
+	color:#ff0000;
+}
+.text-info{
+	color:#0099cc;
+}
+.container{
+	width:90%;
+	margin:1em auto;
+}
+.section{
+	border:1px solid #000;
+}
+.header{
+	background:#333;
+	display: inline-block;
+	width: 100%;
+}
+.header__title{
+	margin:0;
+	float: left;
+	color:#8b8b8b;
+	font-size: 1.5em;
+	font-weight: 500;
+	padding:0.5em 1em;
+}
+.navbar{
+	float: left;
+}
+.navbar__menu{
+	list-style: none;
+	margin: 0;
+	padding: 1em 0;
+}
+.navbar__item{
+	display: inline;
+	padding:1em 2.5em;
+}
+.navbar__item a{
+	text-decoration: none;
+	color:#ccc;
+}
+.navbar__item.active{
+	background: #000;
+}
+.movies_list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-bottom: 3em;
+}
+.card {
+    width: 24%;
+    border: 1px solid #ccc;
+    margin-bottom: 1em;
+}
+.card figure {
+    padding: 0;
+    margin: 0;
+}
+.card__image {
+    width: 100%;
+    cursor: pointer;
+}
+.card__caption {
+    padding: 1em;
+}
+.modal {
+    background: rgba(0,0,0,0.4);
+    position: fixed;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    display: none;
+}
+.modal__dialog {
+    z-index: 9;
+    background: #fff;
+    width: 45em;
+    margin: 5em auto;
+    border-radius: 5px;
+    box-shadow: 0px 0px 5px #8b8b8b;
+}
+.modal__header {
+    border-bottom: 1px solid #ccc;
+    padding: 1em;
+}
+.modal__footer {
+    border-top: 1px solid #ccc;
+    padding: 1em;
+}
+.modal__heading {
+    display: inline;
+    margin: 0;
+}
+.modal__close {
+    float: right;
+    background: none;
+    border: 0;
+    font-weight: 300;
+    color: #8b8b8b;
+    cursor: pointer;
+}
+.modal__body {
+    padding: 1em;
+}
+.modal__body figure{
+    margin:0;
+}
+.modal__body figure img {
+    display: inline;
+    width: 45%;
+}
+.modal__body figure figcaption {
+    float: right;
+	width: 53%;
+	line-height: 1.4em;
+	color: #344554;
+	text-align: justify;
+}
+.table{
+	width: 100%;
+}
+th,td{
+	padding:0.2em;
+}
+.btn {
+    padding: 0.5em 1em;
+    border: 0;
+}
+.btn-default{
+	background:#fff;
+	border:1px solid #ccc;
+	border-radius:5px;
+	cursor: pointer;
+}
+.btn-default:hover {
+    background: #ddd;
+}
+.clearfix{
+	clear:both;
+}
+@media only screen and (max-width: 768px) {
+    .card{
+        width:49%;
+    }
+    .modal__dialog {
+        width: 90%;
+        margin:2em auto;
+    }
+}
+@media only screen and (max-width: 480px) {
+    .card{
+        width:100%;
+    }
+    .modal__body figure img,
+    .modal__body figure figcaption{
+        width: 100%;
+    }
+}
