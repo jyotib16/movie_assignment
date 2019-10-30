@@ -1,9 +1,13 @@
+
 import { starRating } from "./rating.js";
+import { genreNames } from "./get-genres.js";
 import { quickView } from "./quick-view.js";
+
+const API_KEY = '289d5cc6f906a05d0910f4114c41bf6b';
 const image_base_url = 'https://image.tmdb.org/t/p/w500/';
 
-const getDetailAPI =(id) => {	
-	const API = `https://api.themoviedb.org/3/movie/${id}?api_key=289d5cc6f906a05d0910f4114c41bf6b`;
+const getDetailAPI = (id) => {	
+	const API = `https://api.themoviedb.org/3/movie/${id}?api_key=${API_KEY}`;
 	fetch(API)
 	.then((movies) => {
 		return movies.json();
@@ -17,6 +21,7 @@ export const movieCard = (movies) => {
 	for(let [index,movie] of movies.results.entries()){
 		if (index < 4){
 			let rating = starRating(movie.vote_average);
+			let genres = genreNames(movie.genre_ids, index);
 			template += `<div class="card">
 								<figure>
 									<img class="card__image" onclick='getDetailAPI(${movie.id})' src="${image_base_url + movie.backdrop_path}">
@@ -27,8 +32,8 @@ export const movieCard = (movies) => {
 											</span>
 											<i class="fa fa-heart text-danger pull-right"></i>
 										</h3>
-										<p class="card__desc">
-											${movie.genre_ids}
+										<p class="card__desc${index}">
+											${genres}
 										</p>
 										<h4 class="card__rating mb-0">
 											${rating}
