@@ -9,6 +9,8 @@
     <link rel="stylesheet" type="text/css" href="assets/css/normalize.css">
     <link rel="stylesheet" type="text/css" href="assets/css/style.css">
     <link rel="stylesheet" type="text/css" href="assets/css/font-awesome.min.css">
+    <link href="card-template.html" rel="import"/>
+
 </head>
 <body>
 	<!-- Main Section starts here -->
@@ -20,7 +22,7 @@
 			</h1>
 			<nav class="navbar">
 				<ul class="navbar__menu">
-					<li class="navbar__item active">
+					<li class="navbar__item navbar__item--active">
 						<a href="#">
 							Home
 						</a>
@@ -42,7 +44,7 @@
 					<h2>Latest</h2>
 				</header>	
 				<section class="movies_list">
-
+					
 				</section>
 			</section>
 			<section class="container">
@@ -59,10 +61,69 @@
 				<section class="movies_list">
 				</section>
 			</section>
+			
 		</main>
 		<!-- Main Content starts here -->
 		<section id="quick_view" class="modal">
-			
+			<div class="modal__dialog">
+				<header class="modal__header">
+					<h2 class="modal__heading">
+					</h2>
+					<button type="button" class="modal__close">
+						<i class="fa fa-remove"></i>
+					</button>
+				</header>
+				<section class="modal__body">
+					<figure>
+						<img src="">
+						<figcaption>
+							
+						</figcaption>
+					</figure>
+					<table class="table">
+						<tbody>
+							<tr valign="top">
+								<td width="20%">
+									<strong>Genre</strong>
+								</td>
+								<td>
+									<span class="genre-names"></span>
+								</td>
+							</tr>
+							<tr valign="top">
+								<td>
+									<strong>Cast</strong>
+								</td>
+								<td>
+									<span class="cast"></span>
+								</td>
+							</tr>
+							<tr valign="top">
+								<td>
+									<strong>Director</strong>
+								</td>
+								<td>
+									<span class="director"></span>
+								</td>
+							</tr>
+							<tr valign="top">
+								<td>
+									<strong>Movie Rating</strong>
+								</td>
+								<td>
+									<span class="rating"></span>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</section>
+				<footer class="modal__footer">
+					<button type="button" class="btn btn-default pull-right">
+						Close
+					</button>
+					<div class="clearfix"></div>
+				</footer>
+			</div>
 		</section>
 
 	</section>

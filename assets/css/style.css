@@ -3,6 +3,7 @@ Version : 1.0.0
 Author : Jyoti Bhamrah
 Date : 24 Oct 2019 
 */
+@import "./variables.css";
 
 body{
 	font-family: calibri;
@@ -37,7 +38,7 @@ body{
 	margin:1em auto;
 }
 .section{
-	border:1px solid #000;
+	border:1px solid var(--theme-color);
 }
 .header{
 	background:#333;
@@ -68,8 +69,8 @@ body{
 	text-decoration: none;
 	color:#ccc;
 }
-.navbar__item.active{
-	background: #000;
+.navbar__item--active{
+	background: var(--theme-color);
 }
 .movies_list {
     display: flex;
@@ -153,6 +154,10 @@ body{
 }
 th,td{
 	padding:0.2em;
+}
+td span{
+    color:#344554;
+    line-height: 1.3em
 }
 .btn {
     padding: 0.5em 1em;

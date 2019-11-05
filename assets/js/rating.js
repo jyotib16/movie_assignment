@@ -1,3 +1,4 @@
+
 export const starRating = (average) => {
 	let rating = '';
 	let filled_star = Math.floor(average / 2);

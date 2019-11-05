@@ -1,13 +1,10 @@
-
+import * as constants from "./constants.js";
 import { starRating } from "./rating.js";
 import { genreNames } from "./get-genres.js";
 import { quickView } from "./quick-view.js";
 
-const API_KEY = '289d5cc6f906a05d0910f4114c41bf6b';
-const image_base_url = 'https://image.tmdb.org/t/p/w500/';
-
 const getDetailAPI = (id) => {	
-	const API = `https://api.themoviedb.org/3/movie/${id}?api_key=${API_KEY}`;
+	const API = `https://api.themoviedb.org/3/movie/${id}?api_key=${constants.API_KEY}&language=en-US&append_to_response=credits`;
 	fetch(API)
 	.then((movies) => {
 		return movies.json();
@@ -16,35 +13,41 @@ const getDetailAPI = (id) => {
 	});	
 }
 
-export const movieCard = (movies) => {
-	let template = '';	
+export const movieCard = (movies, idx) => {
+	//let template = '';
+	var link = document.querySelector('link[rel="import"]');
+    var content = link.import;
+    
+    var el = content.querySelector('#movieCard');
+    document.body.appendChild(el.cloneNode(true));
+
+	let card = document.querySelectorAll("#movieCard")[0];
+	let mainSection = document.getElementsByClassName('movies_list')[idx];
 	for(let [index,movie] of movies.results.entries()){
 		if (index < 4){
 			let rating = starRating(movie.vote_average);
-			let genres = genreNames(movie.genre_ids, index);
-			template += `<div class="card">
-								<figure>
-									<img class="card__image" onclick='getDetailAPI(${movie.id})' src="${image_base_url + movie.backdrop_path}">
-									<figcaption class="card__caption">
-										<h3 class="card__title mt-0">
-											<span>
-												${movie.original_title}
-											</span>
-											<i class="fa fa-heart text-danger pull-right"></i>
-										</h3>
-										<p class="card__desc${index}">
-											${genres}
-										</p>
-										<h4 class="card__rating mb-0">
-											${rating}
-											<a href="movie-details.html?id=${movie.id}" class="text-info pull-right">
-												Show more
-											</a>
-										</h4>
-									</figcaption>
-								</figure>
-							</div>`;
+			let genres = genreNames(movie.genre_ids, idx, index);
+			let clone = document.importNode(card.content, true);
+
+			let cardTitle = clone.querySelectorAll(".card__title span")[0];
+			cardTitle.textContent  = movie.original_title;
+			
+			let cardImage = clone.querySelectorAll(".card__image")[0];
+			cardImage.src  = constants.image_base_url + movie.backdrop_path;
+			cardImage.addEventListener("click", function(){
+				getDetailAPI(movie.id);
+			});
+			
+			let cardDesc = clone.querySelectorAll(".card__desc")[0];
+			cardDesc.textContent  = genres;
+			
+			let cardRating = clone.querySelectorAll(".card__rating span")[0];
+			cardRating.innerHTML = rating;
+			
+			mainSection.appendChild(clone);
+
 		}
 	}
-	return template;
 }
+
+

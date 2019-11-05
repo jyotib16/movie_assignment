@@ -1,11 +1,15 @@
+import * as constants from "./constants.js";
 
-export const genreNames = (ids, idx) => {
-	const API = `https://api.themoviedb.org/3/genre/movie/list?api_key=289d5cc6f906a05d0910f4114c41bf6b&language=en-US`;
+export const genreNames = (ids, mainIndex, childIndex) => {
+	const API = `https://api.themoviedb.org/3/genre/movie/list?api_key=${constants.API_KEY}&language=en-US`;
 	fetch(API)
 	.then((ids) => {
 		return ids.json();
 	}).then((data) => {
-		insertValues(data.genres, ids);
+		let mainSection = document.getElementsByClassName('movies_list')[mainIndex];
+		let templateCard = mainSection.querySelectorAll(".card")[childIndex];
+		let genreText = templateCard.querySelectorAll(".card__desc")[0];
+		genreText.innerHTML = insertValues(data.genres, ids);
 	});	
 }
 
