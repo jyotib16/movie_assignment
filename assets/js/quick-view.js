@@ -39,7 +39,7 @@ export const quickView = (data) => {
 	});
 
 	let modalImg = modal.querySelectorAll(".modal__body img")[0];
-	modalImg.src = constants.image_base_url + data.backdrop_path;
+	modalImg.src = constants.IMAGE_BASE_URL + data.backdrop_path;
 
 	let modalSummary = modal.querySelectorAll("figcaption")[0];
 	modalSummary.textContent = data.overview;

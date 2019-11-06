@@ -9,35 +9,86 @@
     <link rel="stylesheet" type="text/css" href="assets/css/normalize.css">
     <link rel="stylesheet" type="text/css" href="assets/css/style.css">
     <link rel="stylesheet" type="text/css" href="assets/css/font-awesome.min.css">
+    <link rel="import" id="headerTemplate" href="includes/header.html"/>
+    <link rel="import" id="cardTemplate" href="includes/card-template.html"/>
+    <link rel="import" id="viewTemplate" href="includes/quick-view.html"/>
 </head>
 <body>
 	<!-- Main Section starts here -->
 	<section class="container section">
-		<!-- Header starts here -->
-		<header class="header">
-			<h1 class="header__title">
-				Movie App
-			</h1>
-			<nav class="navbar">
-				<ul class="navbar__menu">
-					<li class="navbar__item active">
-						<a href="#">
-							Home
-						</a>
-					</li>
-					<li class="navbar__item">
-						<a href="#">
-							Explore
-						</a>
-					</li>
-				</ul>
-			</nav>
-		</header>
-		<!-- Header ends here -->
+
+		<section id="header">			
+		</section>
 
 		<!-- Main Content starts here -->
-		<main>
+		<main class="movie-details">
 			<section class="banner">
+				<img class="banner__img" src="https://wallpapercave.com/wp/wp1851901.jpg">
+				<h3 class="banner__badge">
+					Mark as favourite 
+					<a href="" class="banner__icon">
+						<i class="fa fa-heart-o"></i>
+					</a>
+				</h3>
+			</section>
+			<section class="container">
+				<div class="col content">
+					<article class="col__6">
+						<h2 class="content__heading">
+
+						</h2>
+						<p class="content__desc">
+							
+						</p>
+					</article>
+					<aside class="col__6">
+						<section class="bg-light">
+							<table class="table row-border">
+								<tbody>
+									<tr valign="top">
+										<td width="20%">
+											<strong>Genre</strong>
+										</td>
+										<td>
+											<span class="genre-names"></span>
+										</td>
+									</tr>
+									<tr valign="top">
+										<td>
+											<strong>Cast</strong>
+										</td>
+										<td>
+											<span class="cast"></span>
+										</td>
+									</tr>
+									<tr valign="top">
+										<td>
+											<strong>Director</strong>
+										</td>
+										<td>
+											<span class="director"></span>
+										</td>
+									</tr>
+									<tr valign="top">
+										<td>
+											<strong>Movie Rating</strong>
+										</td>
+										<td>
+											<span class="rating"></span>
+										</td>
+									</tr>
+								</tbody>
+							</table>
+						</section>
+					</aside>
+				</div>
+			</section>
+			<section class="container">
+				<header>
+					<h2>Related Movies</h2>
+				</header>	
+				<section class="movies_list">
+				</section>
 			</section>
 		</main>
 		<!-- Main Content starts here -->
@@ -45,5 +96,5 @@
 	</section>
 	<!-- Main Section ends here -->
 </body>
-<!-- <script type="text/javascript" src="assets/js/script.js"></script> -->
+<script type="module" src="assets/js/movie-details.js"></script>
 </html>

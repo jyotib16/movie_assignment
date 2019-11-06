@@ -14,13 +14,7 @@ const getDetailAPI = (id) => {
 }
 
 export const movieCard = (movies, idx) => {
-	//let template = '';
-	var link = document.querySelector('link[rel="import"]');
-    var content = link.import;
-    
-    var el = content.querySelector('#movieCard');
-    document.body.appendChild(el.cloneNode(true));
-
+	
 	let card = document.querySelectorAll("#movieCard")[0];
 	let mainSection = document.getElementsByClassName('movies_list')[idx];
 	for(let [index,movie] of movies.results.entries()){
@@ -33,7 +27,7 @@ export const movieCard = (movies, idx) => {
 			cardTitle.textContent  = movie.original_title;
 			
 			let cardImage = clone.querySelectorAll(".card__image")[0];
-			cardImage.src  = constants.image_base_url + movie.backdrop_path;
+			cardImage.src  = constants.IMAGE_BASE_URL + movie.backdrop_path;
 			cardImage.addEventListener("click", function(){
 				getDetailAPI(movie.id);
 			});
@@ -43,6 +37,9 @@ export const movieCard = (movies, idx) => {
 			
 			let cardRating = clone.querySelectorAll(".card__rating span")[0];
 			cardRating.innerHTML = rating;
+
+			let cardLink = clone.querySelectorAll(".card__rating a")[0];
+			cardLink.href = 'movie-details.html?id=' + movie.id;
 			
 			mainSection.appendChild(clone);
 
