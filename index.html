@@ -5,11 +5,13 @@
 	<title>Movie App</title>
 	<meta name="keywords" content="movie, movies, latest movies, trending movies, popular movies"/>
 	<meta name="description" content="This app is all about the movies."/>
-    <meta name="viewport" content="width=device-width,initial-scale=1">
+	<meta name="viewport" content="width=device-width,initial-scale=1">
+	<!-- Stylesheets -->
     <link rel="stylesheet" type="text/css" href="assets/css/normalize.css">
     <link rel="stylesheet" type="text/css" href="assets/css/style.css">
     <link rel="stylesheet" type="text/css" href="assets/css/font-awesome.min.css">
-    <link rel="import" id="headerTemplate" href="includes/header.html"/>
+	<!-- Import Templates -->
+	<link rel="import" id="headerTemplate" href="includes/header.html"/>
     <link rel="import" id="cardTemplate" href="includes/card-template.html"/>
     <link rel="import" id="viewTemplate" href="includes/quick-view.html"/>
 
@@ -17,12 +19,11 @@
 <body>
 	<!-- Main Section starts here -->
 	<section class="container section">
-
 		<section id="header">			
 		</section>
 
 		<!-- Main Content starts here -->
-		<main>
+		<main class="homePage">
 			<section class="container">
 				<header>
 					<h2>Latest</h2>
@@ -47,10 +48,10 @@
 			</section>
 			
 		</main>
-		<!-- Main Content starts here -->
+		<!-- Main Content ends here -->
 
 	</section>
 	<!-- Main Section ends here -->
 </body>
-<script type="module" src="assets/js/script.js"></script>
+<script type="module" src="assets/js/main.js"></script>
 </html>

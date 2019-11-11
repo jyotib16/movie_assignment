@@ -1,8 +1,9 @@
 /* 
-Version : 1.0.0 
+Version : 1.3.0 
 Author : Jyoti Bhamrah
 Date : 24 Oct 2019 
 */
+
 @import "./variables.css";
 
 body{
@@ -37,6 +38,10 @@ body{
 	width:90%;
 	margin:1em auto;
 }
+.container-fluid{
+    width:97%;
+    margin:1em auto;
+}
 .section{
 	border:1px solid var(--theme-color);
 }
@@ -67,7 +72,7 @@ body{
 }
 .navbar__item a{
 	text-decoration: none;
-	color:#ccc;
+	color:var(--text-gray);
 }
 .navbar__item--active{
 	background: var(--theme-color);
@@ -80,11 +85,11 @@ body{
 }
 .card {
     width: 24%;
-    border: 1px solid #ccc;
+    border: 1px solid var(--text-gray);
     margin-bottom: 1em;
 }
 .card:hover {
-    box-shadow: 0px 0px 10px #ccc;
+    box-shadow: 0px 0px 10px var(--text-gray);
 }
 .card figure {
     padding: 0;
@@ -109,18 +114,18 @@ body{
 }
 .modal__dialog {
     z-index: 9;
-    background: #fff;
+    background: var(--text-white);
     width: 45em;
     margin: 5em auto;
     border-radius: 5px;
     box-shadow: 0px 0px 5px #8b8b8b;
 }
 .modal__header {
-    border-bottom: 1px solid #ccc;
+    border-bottom: 1px solid var(--text-gray);
     padding: 1em;
 }
 .modal__footer {
-    border-top: 1px solid #ccc;
+    border-top: 1px solid var(--text-gray);
     padding: 1em;
 }
 .modal__heading {
@@ -163,8 +168,7 @@ td span{
     line-height: 1.3em
 }
 .row-border td {
-    border-bottom: 1px solid 
-    #ccc;
+    border-bottom: 1px solid var(--text-gray);
 }
 .row-border tr:last-child td {
     border-bottom: 0;
@@ -174,8 +178,8 @@ td span{
     border: 0;
 }
 .btn-default{
-	background:#fff;
-	border:1px solid #ccc;
+	background:var(--text-white);
+	border:1px solid var(--text-gray);
 	border-radius:5px;
 	cursor: pointer;
 }
@@ -195,7 +199,7 @@ td span{
     position: absolute;
     bottom: 1em;
     right: 1em;
-    background: #ccc;
+    background: var(--text-gray);
     padding: 0.7em 1.5em;
     border-radius: 2em;
 }
@@ -203,9 +207,16 @@ td span{
     color:#414141;
     margin-left:0.2em;
 }
-.content__desc {
+.content__desc, .detail__desc {
     font-size: 1em;
     line-height: 1.3em;
+}
+.cast a {
+    color: #344554;
+    text-decoration: none;
+}
+.cast a:hover {
+    color: #14628f;
 }
 .col {
     display: flex;
@@ -222,6 +233,47 @@ td span{
 }
 .clearfix{
 	clear:both;
+}
+.detail {
+    margin: 0;
+    display: flex;
+    justify-content: space-between;
+}
+.detail__image {
+    width: 25%;
+    height: 20em;
+    object-fit: cover;
+}
+.detail__content {
+    width: 70%;
+    background: #f1f1f1;
+    padding: 1em;
+}
+.detail__heading {
+    margin: 0;
+}
+.rate-meter {
+    display: inline-flex;
+}
+.rate-meter h2 {
+    margin: 0;
+    font-weight: 400;
+    margin-left: 0.3em;
+    text-align: center;
+}
+.list {
+    display: flex;
+    flex-wrap: wrap;
+}
+.list h3 {
+    background: #f1f1f1;
+    margin: 0;
+    padding: 0.7em;
+    width: 100%;
+}
+.list__col {
+    width: 23.5%;
+    padding: 0.5em;
 }
 @media only screen and (max-width: 768px) {
     .card{

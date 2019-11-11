@@ -13,7 +13,7 @@ export const genreNames = (ids, mainIndex, childIndex) => {
 	});	
 }
 
-function insertValues (data,ids){
+const insertValues = (data,ids) => {
 	let names = [];
 	for(let i=0;i<data.length;i++){
 		for(let j=0;j<ids.length;j++){
