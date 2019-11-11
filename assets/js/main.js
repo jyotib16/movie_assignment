@@ -9,7 +9,7 @@ import {
 		movieDetails, 
 		actorDetails, 
 		actorFilmography 
-		} from "./functions.js";
+		} from "./detail-functions.js";
 
 const API_LATEST_MOVIES = `https://api.themoviedb.org/3/movie/now_playing?api_key=${constants.API_KEY}&language=en-US&include_adult=false`;
 const API_MOVIE_GENRES = `https://api.themoviedb.org/3/genre/movie/list?api_key=${constants.API_KEY}&language=en-US`;
