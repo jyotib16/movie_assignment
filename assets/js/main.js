@@ -4,12 +4,8 @@
 "use strict";
 import "./import-templates.js";
 import * as constants from "./constants.js";
-import { movieCard } from "./card.js";
-import { 
-		movieDetails, 
-		actorDetails, 
-		actorFilmography 
-		} from "./detail-functions.js";
+import { Movie } from "./card.js";
+import { DetailData	} from "./detail-functions.js";
 
 const API_LATEST_MOVIES = `https://api.themoviedb.org/3/movie/now_playing?api_key=${constants.API_KEY}&language=en-US&include_adult=false`;
 const API_MOVIE_GENRES = `https://api.themoviedb.org/3/genre/movie/list?api_key=${constants.API_KEY}&language=en-US`;
@@ -24,22 +20,30 @@ const CAST_ID = window.location.href.split("?castId=")[1];
 const API_ACTOR_DETAILS = `https://api.themoviedb.org/3/person/${CAST_ID}?api_key=${constants.API_KEY}&language=en-US`;
 const API_ACTOR_FILMOGRAPHY = `https://api.themoviedb.org/3/person/${CAST_ID}/movie_credits?api_key=${constants.API_KEY}&language=en-US`;
 
+var movie = new Movie();
+
 const LOAD_MOVIES = (API_URL, index) => {	
 	fetch(API_URL)
 	.then((movies) => {
 		return movies.json();
 	}).then((data) => {
-		movieCard(data, index);
-	});
+		movie.card(data, index);
+	}).catch((error) => {
+        console.log(error);
+    });
 }
+
+var data = new DetailData();
 
 const LOAD_MOVIE_DETAILS = () => {
 	fetch(API_MOVIE_DETAILS)
 	.then((movie) => {
 		return movie.json();
 	}).then((details) => {
-		movieDetails(details);
-	});
+		data.movieDetails(details);
+	}).catch((error) => {
+        console.log(error);
+    });
 }
 
 const LOAD_ACTOR_DETAILS = () => {
@@ -47,8 +51,10 @@ const LOAD_ACTOR_DETAILS = () => {
 	.then((actor) => {
 		return actor.json();
 	}).then((details) => {
-		actorDetails(details);
-	});
+		data.actorDetails(details);
+	}).catch((error) => {
+        console.log(error);
+    });
 }
 
 const LOAD_ACTOR_FILMOGRAPHY = () => {
@@ -56,8 +62,10 @@ const LOAD_ACTOR_FILMOGRAPHY = () => {
 	.then((actor) => {
 		return actor.json();
 	}).then((filmography) => {
-		actorFilmography(filmography);
-	});
+		data.actorFilmography(filmography);
+	}).catch((error) => {
+        console.log(error);
+    });
 }
 
 const main = document.getElementsByClassName("homePage")[0];

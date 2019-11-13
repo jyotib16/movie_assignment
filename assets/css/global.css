@@ -1,0 +1,60 @@
+
+@import "./variables.css";
+
+body{
+	font-family: calibri;
+}
+
+.mt-0{
+	margin-top:0;
+}
+.mb-0{
+	margin-bottom:0;
+}
+.ml-0{
+	margin-left:0;
+}
+.mr-0{
+	margin-right:0;
+}
+.pull-left{
+	float: left;
+}
+.pull-right{
+	float:right;
+}
+.text-danger{
+	color:#cc0000;
+}
+.text-info{
+	color:#0099cc;
+}
+.btn {
+    padding: 0.5em 1em;
+    border: 0;
+}
+.btn-default{
+	background:var(--text-white);
+	border:1px solid var(--text-gray);
+	border-radius:5px;
+	cursor: pointer;
+}
+.btn-default:hover {
+    background: #ddd;
+}
+.col {
+    display: flex;
+    justify-content: space-between;
+    width:100%;
+}
+.col__6 {
+    width:50%;
+}
+.bg-light{
+    background: #eee;
+    border-radius: 5px;
+    padding: 1em;
+}
+.clearfix{
+	clear:both;
+}

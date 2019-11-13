@@ -6,9 +6,10 @@
 	<meta name="keywords" content="movie, movies, latest movies, trending movies"/>
 	<meta name="description" content="This app is all about the movies."/>
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <link rel="stylesheet" type="text/css" href="assets/css/normalize.css">
-    <link rel="stylesheet" type="text/css" href="assets/css/style.css">
-    <link rel="stylesheet" type="text/css" href="assets/css/font-awesome.min.css">
+	<!-- Stylesheets -->
+	<link rel="stylesheet" type="text/css" href="assets/css/style.css">	
+    <link rel="stylesheet" type="text/css" href="assets/css/responsive.css">
+	<!-- Import Templates -->
     <link rel="import" id="headerTemplate" href="includes/header.html"/>
     <link rel="import" id="cardTemplate" href="includes/card-template.html"/>
     <link rel="import" id="viewTemplate" href="includes/quick-view.html"/>
@@ -23,10 +24,10 @@
 		<!-- Main Content starts here -->
 		<main class="movie-details">
 			<section class="banner">
-				<img class="banner__img" src="assets/images/banner-default.jpg">
+				<img class="banner__img" src="assets/images/banner-default.jpg" alt="Movie Banner">
 				<h3 class="banner__badge">
 					Mark as favourite 
-					<a href="" class="banner__icon">
+					<a class="banner__icon">
 						<i class="fa fa-heart-o"></i>
 					</a>
 				</h3>
@@ -96,5 +97,6 @@
 	</section>
 	<!-- Main Section ends here -->
 </body>
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script type="module" src="assets/js/main.js"></script>
 </html>

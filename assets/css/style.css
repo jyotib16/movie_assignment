@@ -4,36 +4,11 @@ Author : Jyoti Bhamrah
 Date : 24 Oct 2019 
 */
 
+@import "./font-awesome.min.css";
 @import "./variables.css";
+@import "./normalize.css";
+@import "./global.css";
 
-body{
-	font-family: calibri;
-}
-
-.mt-0{
-	margin-top:0;
-}
-.mb-0{
-	margin-bottom:0;
-}
-.ml-0{
-	margin-left:0;
-}
-.mr-0{
-	margin-right:0;
-}
-.pull-left{
-	float: left;
-}
-.pull-right{
-	float:right;
-}
-.text-danger{
-	color:#ff0000;
-}
-.text-info{
-	color:#0099cc;
-}
 .container{
 	width:90%;
 	margin:1em auto;
@@ -146,9 +121,9 @@ body{
 .modal__body figure{
     margin:0;
 }
-.modal__body figure img {
+.modal__img {
     display: inline;
-    width: 45%;
+    width : 45%;
 }
 .modal__body figure figcaption {
     float: right;
@@ -172,19 +147,6 @@ td span{
 }
 .row-border tr:last-child td {
     border-bottom: 0;
-}
-.btn {
-    padding: 0.5em 1em;
-    border: 0;
-}
-.btn-default{
-	background:var(--text-white);
-	border:1px solid var(--text-gray);
-	border-radius:5px;
-	cursor: pointer;
-}
-.btn-default:hover {
-    background: #ddd;
 }
 .banner {
     position: relative;
@@ -217,22 +179,6 @@ td span{
 }
 .cast a:hover {
     color: #14628f;
-}
-.col {
-    display: flex;
-    justify-content: space-between;
-    width:100%;
-}
-.col__6 {
-    width:50%;
-}
-.bg-light{
-    background: #eee;
-    border-radius: 5px;
-    padding: 1em;
-}
-.clearfix{
-	clear:both;
 }
 .detail {
     margin: 0;
@@ -274,29 +220,4 @@ td span{
 .list__col {
     width: 23.5%;
     padding: 0.5em;
-}
-@media only screen and (max-width: 768px) {
-    .card{
-        width:49%;
-    }
-    .modal__dialog {
-        width: 90%;
-        margin:2em auto;
-    }
-    .col{
-        display: block;
-        width: 100%;
-    }
-    .col__6{
-        width: 100%;
-    }
-}
-@media only screen and (max-width: 480px) {
-    .card{
-        width:100%;
-    }
-    .modal__body figure img,
-    .modal__body figure figcaption{
-        width: 100%;
-    }
 }

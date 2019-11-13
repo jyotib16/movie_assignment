@@ -1,0 +1,35 @@
+
+@media only screen and (max-width: 768px) {
+    .card{
+        width:49%;
+    }
+    .modal__dialog {
+        width: 90%;
+        margin:2em auto;
+    }
+    .col{
+        display: block;
+        width: 100%;
+    }
+    .col__6{
+        width: 100%;
+    }
+    .detail{
+        display: block;
+    }
+    .detail__image, .list__col{
+        width: 100%;
+    }
+    .detail__content{
+        width: 92%;;
+    }
+}
+@media only screen and (max-width: 480px) {
+    .card{
+        width:100%;
+    }
+    .modal__body figure img,
+    .modal__body figure figcaption{
+        width: 100%;
+    }
+}
