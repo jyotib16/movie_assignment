@@ -3,13 +3,30 @@
 
 "use strict";
 import * as constants from "./constants.js";
+import { Movie } from "./card.js";
 import { Utility } from "./app-utility.js";
 
-export class DetailData {
+export class LoadMethods {
 	
 	constructor(){
 		console.log("Inside Detail Data Constructor!!");
 	}
+
+	searchMovie = ( allMovies ) => {
+		const search_field = document.getElementsByClassName("form__input")[0];
+		if(search_field){			
+			var ratingData = document.getElementById('movie-rating');
+			setTimeout(function() { 
+				loadSearchData('', JSON.parse(allMovies),"all data");
+			}, 10);
+			ratingData.addEventListener('change',function(evt){
+				loadSearchData(evt.currentTarget.value, JSON.parse(allMovies),"rating");
+			})
+			search_field.addEventListener('keyup', function(evt){
+				loadSearchData(evt.currentTarget.value, JSON.parse(allMovies),"title search");
+			});
+		}
+	};
 
 	movieDetails = (movieData) => {
 		var genres = movieData.genres.length;
@@ -83,7 +100,7 @@ export class DetailData {
 			}
 		}
 		
-		releaseYears = releaseYears.sort();
+		releaseYears = releaseYears.sort().reverse();
 		
 		for(let j = 0 ; j < releaseYears.length; j++){
 			
@@ -109,5 +126,65 @@ export class DetailData {
 	}
 }
 
+const loadSearchData = ( keyValue, allData, dataType ) => {
+	allData = Object.values(allData);
+	allData = onlyUniqueMovies(allData);
+	document.getElementsByClassName('movies_list')[0].innerHTML = '';
+	var filterData = [];
+	allData.filter((data)=>{
+		if(keyValue == ''){
+			filterData.push(data);
+		}
+		if(keyValue != '' && data.original_title && dataType!= 'rating'){
+			let flag = false;
+			let title = data.original_title.toLowerCase();
+			let genres = data.genre_ids;
+			let genreNames = utility.getGenres(genres);
+			for(let i=0;i<genreNames.length;i++){
+				if(genreNames[i].toLowerCase().indexOf(keyValue)!= -1){
+					flag = true;
+				}
+			}
+			if(title.indexOf(keyValue) != -1){
+				flag = true;
+			}
+			if(flag){
+				filterData.push(data);
+			}
+		}
+		if(keyValue != ''  && dataType == 'rating' && (keyValue>=1 || keyValue<=5)){
+			let vote = Math.floor(data.vote_average / 2);
+			if(vote == keyValue){
+				filterData.push(data);
+			}
+		}
+	});
+	if(filterData.length == 0){
+		document.getElementsByClassName('no_result')[0].textContent = `No movie found matching '${keyValue}'`;
+	}
+	else{
+		if(filterData.length<2){
+			document.getElementsByClassName('no_result')[0].textContent = `${filterData.length} movie found`;
+		}
+		else{			
+			document.getElementsByClassName('no_result')[0].textContent = `${filterData.length} movies found`;
+		}
+		movie.card(filterData, 0, filterData.length);
+	}
+}
+
+const onlyUniqueMovies = ( movies ) => {
+    var moviesLength = movies.length;
+	var resultIds = [];
+	var resultData = [];
+	for(let movie of movies){
+		if(resultIds.indexOf(movie.id) == -1){
+			resultIds.push(movie.id);
+			resultData.push(movie);
+		}
+	}
+	return resultData;
+}
 
 var utility = new Utility();
+var movie = new Movie();

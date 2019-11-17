@@ -22,30 +22,41 @@
 		</section>
 
 		<!-- Main Content starts here -->
-		<main class="main">
-			<section class="container">
+		<main class="movies_result">
+			<section class="search">
+				<div class="container">
+					<form class="form">
+						<div class="form__field">
+							<input type="search" class="form__input" placeholder="Search for movies, actors, genre .." />
+							<button type="button" class="form__button">
+								<i class="fa fa-search"></i>
+							</button>
+						</div>
+						<div class="form__field">
+							<div class="form__range"> 
+									<label>Movie Rating</label>
+								<datalist id="ratings" class="rating-list">
+									<option value="1">1</option>
+									<option value="2">2</option>
+									<option value="3">3</option>
+									<option value="4">4</option>
+									<option value="5">5</option>
+								</datalist>
+								<input type="range" id="movie-rating" list="ratings" value="2" min="1" max="5" />
+							</div>
+						</div>
+					</form>
+				</div>
+			</section>
+			<section class="container">	
 				<header>
-					<h2>Latest</h2>
-				</header>	
+					<h2>Results</h2>
+				</header>
+				<h3 class="no_result text-primary"></h3>
 				<section class="movies_list">
 					
 				</section>
 			</section>
-			<section class="container">
-				<header>
-					<h2>Trending</h2>
-				</header>	
-				<section class="movies_list">
-				</section>
-			</section>
-			<section class="container">
-				<header>
-					<h2>Most Watched</h2>
-				</header>	
-				<section class="movies_list">
-				</section>
-			</section>
-			
 		</main>
 		<!-- Main Content ends here -->
 

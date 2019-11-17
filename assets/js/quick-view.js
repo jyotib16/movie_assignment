@@ -6,7 +6,6 @@ export class QuickView{
         console.log("Inside Quick View Constructor!!");
     }
     quickView = (data) => {
-        //debugger;
         var genres = data.genres.length;
         var genreNames = [];
         for(let i = 0 ; i < genres ; i++){

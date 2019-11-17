@@ -2,7 +2,16 @@
 $(document).ready(function () {
 	
 	/* Import Header */
-	$("#header").load("includes/header.html");
+	$("#header").load("includes/header.html",function(){
+		if(window.location.href.indexOf("index.html") != -1){
+			$(".navbar__item:eq(1)").removeClass("navbar__item--active");
+			$(".navbar__item:eq(0)").addClass("navbar__item--active");
+		}
+		if(window.location.href.indexOf("search-movies.html") != -1){
+			$(".navbar__item:eq(0)").removeClass("navbar__item--active");
+			$(".navbar__item:eq(1)").addClass("navbar__item--active");
+		}
+	});
 
 	/* Import Card Template */	
 	const cardLink = document.querySelector('#cardTemplate');
@@ -19,7 +28,6 @@ $(document).ready(function () {
 		const viewSel = viewContent.querySelector('#quick_view');
 		document.body.appendChild(viewSel.cloneNode(true));
 	}
-
+	
 });
-
 

@@ -8,24 +8,29 @@ export class Movie extends QuickView{
 		console.log("Inside Movie Card Constructor!");
 	}
 
-	card = (movieList, idx) => {
+	card = (movieList, idx, items) => {
 		var card = document.querySelectorAll("#movieCard")[0];
 		var mainSection = document.getElementsByClassName('movies_list')[idx];
-		for(let [index, movie] of movieList.results.entries()){
-			if (index < 4){
+		for(let [index, movie] of movieList.entries()){
+			if (index < items){
 
 				let cloneCard = document.importNode(card.content, true);
 				
 				cloneCard.querySelectorAll(".card__title span")[0].textContent  = movie.original_title;
 				
 				let cardImage = cloneCard.querySelectorAll(".card__image")[0];
-				cardImage.src  = constants.IMAGE_BASE_URL + movie.backdrop_path;
+				if(movie.backdrop_path){
+					cardImage.src  = constants.IMAGE_BASE_URL + movie.backdrop_path;
+				}
+				else{
+					cardImage.src  = 'assets/images/no-image.jpg';
+				}
 
 				cardImage.addEventListener("click", function(){
 					loadDetailAPI(movie.id);
 				});
 				
-				cloneCard.querySelectorAll(".card__desc")[0].textContent  = utility.genreNames(movie.genre_ids, idx, index);
+				cloneCard.querySelectorAll(".card__desc")[0].textContent  = utility.getGenres(movie.genre_ids);
 				cloneCard.querySelectorAll(".card__rating span")[0].innerHTML = utility.movieRating(movie.vote_average);
 				
 				let favourite = cloneCard.querySelectorAll(".fa")[0];
@@ -39,14 +44,12 @@ export class Movie extends QuickView{
 				mainSection.appendChild(cloneCard);
 			}
 		}
-	}	
-
-	
+	}		
 }
 
 /* Get Movie Detail API and show Quick View */
 const loadDetailAPI = (id) => {	
-	const API = `https://api.themoviedb.org/3/movie/${id}?api_key=${constants.API_KEY}&language=en-US&append_to_response=credits`;
+	const API = constants.API_MOVIE_DETAILS(id);
 	fetch(API)
 	.then((movies) => {
 		return movies.json();

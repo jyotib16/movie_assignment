@@ -5,83 +5,103 @@
 import "./import-templates.js";
 import * as constants from "./constants.js";
 import { Movie } from "./card.js";
-import { DetailData	} from "./detail-functions.js";
+import { LoadMethods } from "./detail-functions.js";
 
-const API_LATEST_MOVIES = `https://api.themoviedb.org/3/movie/now_playing?api_key=${constants.API_KEY}&language=en-US&include_adult=false`;
-const API_MOVIE_GENRES = `https://api.themoviedb.org/3/genre/movie/list?api_key=${constants.API_KEY}&language=en-US`;
-const API_TRENDING_MOVIES = `https://api.themoviedb.org/3/trending/movie/week?api_key=${constants.API_KEY}`;
-const API_MOST_WATCHED_MOVIES = `https://api.themoviedb.org/3/movie/popular?api_key=${constants.API_KEY}&language=en-US&page=1`;
+const ID = constants.URL.split("?id=")[1];
+const CAST_ID = constants.URL.split("?castId=")[1];
 
-const ID = window.location.href.split("?id=")[1];
-const API_RELATED_MOVIES = `https://api.themoviedb.org/3/movie/${ID}/similar?api_key=${constants.API_KEY}&language=en-US&page=1`;
-const API_MOVIE_DETAILS = `https://api.themoviedb.org/3/movie/${ID}?api_key=${constants.API_KEY}&language=en-US&append_to_response=credits`;
+const main = document.getElementsByClassName("main")[0];
+const search_page = document.getElementsByClassName("movies_result")[0];
 
-const CAST_ID = window.location.href.split("?castId=")[1];
-const API_ACTOR_DETAILS = `https://api.themoviedb.org/3/person/${CAST_ID}?api_key=${constants.API_KEY}&language=en-US`;
-const API_ACTOR_FILMOGRAPHY = `https://api.themoviedb.org/3/person/${CAST_ID}/movie_credits?api_key=${constants.API_KEY}&language=en-US`;
-
+var allMovies = {};
 var movie = new Movie();
+var method = new LoadMethods();
 
 const LOAD_MOVIES = (API_URL, index) => {	
 	fetch(API_URL)
 	.then((movies) => {
 		return movies.json();
 	}).then((data) => {
-		movie.card(data, index);
+		Array.prototype.push.apply(allMovies, data.results);
+		localStorage.setItem('MoviesData',JSON.stringify(allMovies));
+		movie.card(data.results, index, 4);
+	}).catch((error) => {
+        console.log(error);
+    });
+}
+	
+const LOAD_GENRES = (API_URL) => {
+	fetch(API_URL)
+	.then((genreIds) => {
+		return genreIds.json();
+	}).then((data) => {			
+		localStorage.setItem('GenresData',JSON.stringify(data));
+	}).catch((error) => {
+        console.log(error);
+    });	
+}
+
+const LOAD_RELATED_MOVIES = (API_URL, index) => {	
+	fetch(API_URL)
+	.then((movies) => {
+		return movies.json();
+	}).then((data) => {
+		movie.card(data.results, index, 4);
 	}).catch((error) => {
         console.log(error);
     });
 }
 
-var data = new DetailData();
-
-const LOAD_MOVIE_DETAILS = () => {
-	fetch(API_MOVIE_DETAILS)
+const LOAD_MOVIE_DETAILS = (API_URL) => {
+	fetch(API_URL)
 	.then((movie) => {
 		return movie.json();
 	}).then((details) => {
-		data.movieDetails(details);
+		method.movieDetails(details);
 	}).catch((error) => {
         console.log(error);
     });
 }
 
-const LOAD_ACTOR_DETAILS = () => {
-	fetch(API_ACTOR_DETAILS)
+const LOAD_ACTOR_DETAILS = (API_URL) => {
+	fetch(API_URL)
 	.then((actor) => {
 		return actor.json();
 	}).then((details) => {
-		data.actorDetails(details);
+		method.actorDetails(details);
 	}).catch((error) => {
         console.log(error);
     });
 }
 
-const LOAD_ACTOR_FILMOGRAPHY = () => {
-	fetch(API_ACTOR_FILMOGRAPHY)
+const LOAD_ACTOR_FILMOGRAPHY = (API_URL) => {
+	fetch(API_URL)
 	.then((actor) => {
 		return actor.json();
 	}).then((filmography) => {
-		data.actorFilmography(filmography);
+		method.actorFilmography(filmography);
 	}).catch((error) => {
         console.log(error);
     });
 }
 
-const main = document.getElementsByClassName("homePage")[0];
-
 if(main){
-	LOAD_MOVIES(API_LATEST_MOVIES, 0);
-	LOAD_MOVIES(API_TRENDING_MOVIES, 1);
-	LOAD_MOVIES(API_MOST_WATCHED_MOVIES, 2);
+	LOAD_MOVIES(constants.API_LATEST_MOVIES, 0);
+	LOAD_MOVIES(constants.API_TRENDING_MOVIES, 1);
+	LOAD_MOVIES(constants.API_MOST_WATCHED_MOVIES, 2);
+	LOAD_GENRES(constants.API_MOVIE_GENRES);
+}
+
+if(search_page){
+	method.searchMovie(localStorage.getItem('MoviesData'));
 }
 
 if(ID){
-	LOAD_MOVIE_DETAILS();
-	LOAD_MOVIES(API_RELATED_MOVIES, 0);
+	LOAD_MOVIE_DETAILS(constants.API_MOVIE_DETAILS(ID));
+	LOAD_RELATED_MOVIES(constants.API_RELATED_MOVIES(ID), 0);
 }
 
 if(CAST_ID){
-	LOAD_ACTOR_DETAILS();
-	LOAD_ACTOR_FILMOGRAPHY();
+	LOAD_ACTOR_DETAILS(constants.API_ACTOR_DETAILS(CAST_ID));
+	LOAD_ACTOR_FILMOGRAPHY(constants.API_ACTOR_FILMOGRAPHY(CAST_ID));
 }

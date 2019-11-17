@@ -14,15 +14,6 @@
     .col__6{
         width: 100%;
     }
-    .detail{
-        display: block;
-    }
-    .detail__image, .list__col{
-        width: 100%;
-    }
-    .detail__content{
-        width: 92%;;
-    }
 }
 @media only screen and (max-width: 480px) {
     .card{
@@ -31,5 +22,14 @@
     .modal__body figure img,
     .modal__body figure figcaption{
         width: 100%;
+    }
+    .detail{
+        display: block;
+    }
+    .detail__image, .list__col{
+        width: 100%;
+    }
+    .detail__content{
+        width: 92%;;
     }
 }

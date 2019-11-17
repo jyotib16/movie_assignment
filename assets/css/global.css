@@ -29,6 +29,9 @@ body{
 .text-info{
 	color:#0099cc;
 }
+.text-primary{
+	color:#14628f;
+}
 .btn {
     padding: 0.5em 1em;
     border: 0;

@@ -55,13 +55,16 @@ Date : 24 Oct 2019
 .movies_list {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
-    margin-bottom: 3em;
+    margin-bottom: 1em;
 }
 .card {
     width: 24%;
     border: 1px solid var(--text-gray);
     margin-bottom: 1em;
+    margin-right:0.8em;
+}
+.card:nth-child(4n+4){
+    margin-right: 0;
 }
 .card:hover {
     box-shadow: 0px 0px 10px var(--text-gray);
@@ -70,9 +73,13 @@ Date : 24 Oct 2019
     padding: 0;
     margin: 0;
 }
+.card__desc {
+    word-break: break-all;
+}
 .card__image {
     width: 100%;
     cursor: pointer;
+    height: 10.2em;
 }
 .card__caption {
     padding: 1em;
@@ -220,4 +227,44 @@ td span{
 .list__col {
     width: 23.5%;
     padding: 0.5em;
+}
+.form {
+    display: flex;
+    justify-content: space-between;
+}
+.form__field {
+    width: 40%;
+    display: flex;
+    justify-content: space-between;
+}
+.form__input {
+    width: 95%;
+    padding: 0.5em;
+    border: 1px solid #ccc;
+    height: 3em;
+}
+.form__button {
+    background: #14628f;
+    border: 0;
+    color: #fff;
+    padding: 0.5em 0.8em;
+    height: 3em;
+}
+.form__range label {
+    /* line-height: 2em; */
+    margin-right: 2em;
+    margin-bottom: 1em;
+    font-weight: 500;
+    float: left;
+    color: #14628f;
+}
+.form__range input{
+    display: block;
+}
+.rating-list{
+    display: inline-block;
+}
+.rating-list option{
+    display: inline;
+    margin-right: 0.8em;
 }
