@@ -12,13 +12,11 @@ export class LoadMethods {
 		console.log("Inside Detail Data Constructor!!");
 	}
 
-	searchMovie = ( allMovies ) => {
+	searchMovie = (allMovies) => {
 		const search_field = document.getElementsByClassName("form__input")[0];
 		if(search_field){			
 			var ratingData = document.getElementById('movie-rating');
-			setTimeout(function() { 
-				loadSearchData('', JSON.parse(allMovies),"all data");
-			}, 10);
+			loadSearchData('', JSON.parse(allMovies),"all data");
 			ratingData.addEventListener('change',function(evt){
 				loadSearchData(evt.currentTarget.value, JSON.parse(allMovies),"rating");
 			})
@@ -26,7 +24,7 @@ export class LoadMethods {
 				loadSearchData(evt.currentTarget.value, JSON.parse(allMovies),"title search");
 			});
 		}
-	};
+	}
 
 	movieDetails = (movieData) => {
 		var genres = movieData.genres.length;
@@ -124,38 +122,48 @@ export class LoadMethods {
 		}
 	
 	}
+
 }
 
-const loadSearchData = ( keyValue, allData, dataType ) => {
+const loadSearchData = (keyValue, allData, dataType) => {
+	keyValue = keyValue.toLowerCase();
 	allData = Object.values(allData);
 	allData = onlyUniqueMovies(allData);
 	document.getElementsByClassName('movies_list')[0].innerHTML = '';
 	var filterData = [];
 	allData.filter((data)=>{
-		if(keyValue == ''){
-			filterData.push(data);
-		}
-		if(keyValue != '' && data.original_title && dataType!= 'rating'){
-			let flag = false;
-			let title = data.original_title.toLowerCase();
-			let genres = data.genre_ids;
-			let genreNames = utility.getGenres(genres);
-			for(let i=0;i<genreNames.length;i++){
-				if(genreNames[i].toLowerCase().indexOf(keyValue)!= -1){
+		if(data.id){
+			if(keyValue == ''){
+				filterData.push(data);
+			}
+			if(keyValue != '' && data.original_title && dataType!= 'rating'){
+				let flag = false;
+				let title = data.original_title.toLowerCase();
+				let genres = data.genre_ids;
+				let genreNames = utility.loadGenres(genres);
+				let actors = utility.loadActorNames(data.id);
+				for(let i=0;i<actors.length;i++){
+					if(actors[i].toLowerCase().indexOf(keyValue)!=-1){
+						flag = true;
+					}
+				}
+				for(let i=0;i<genreNames.length;i++){
+					if(genreNames[i].toLowerCase().indexOf(keyValue)!= -1){
+						flag = true;
+					}
+				}
+				if(title.indexOf(keyValue) != -1){
 					flag = true;
 				}
+				if(flag){
+					filterData.push(data);
+				}
 			}
-			if(title.indexOf(keyValue) != -1){
-				flag = true;
-			}
-			if(flag){
-				filterData.push(data);
-			}
-		}
-		if(keyValue != ''  && dataType == 'rating' && (keyValue>=1 || keyValue<=5)){
-			let vote = Math.floor(data.vote_average / 2);
-			if(vote == keyValue){
-				filterData.push(data);
+			if(keyValue != ''  && dataType == 'rating' && (keyValue >= 1 || keyValue <= 5)){
+				let vote = Math.floor(data.vote_average / 2);
+				if(vote == keyValue){
+					filterData.push(data);
+				}
 			}
 		}
 	});

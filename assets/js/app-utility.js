@@ -4,7 +4,21 @@ export class Utility{
 	constructor(){
 		console.log("Inside Utility Constructor!");
 	}
-	getGenres = (ids) => {
+	loadActorNames = (id) => {
+		let actorsData = localStorage.getItem('MovieDetails');
+		actorsData = JSON.parse(actorsData);
+		for(let i=0;i<actorsData.length;i++){
+			if(actorsData[i].id == id){
+				let actors = [];
+				let castArr = actorsData[i].actors.cast.length;
+				for(let j=0;j<castArr;j++){
+					actors.push(actorsData[i].actors.cast[j].name);
+				}
+				return actors;
+			}
+		}
+	}
+	loadGenres = (ids) => {
 		let genresData = localStorage.getItem('GenresData');
 		genresData = JSON.parse(genresData).genres;
 		return insertValues(genresData,ids);

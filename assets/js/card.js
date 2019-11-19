@@ -1,6 +1,11 @@
 import * as constants from "./constants.js";
+import { Import } from "./import-templates.js";
 import { Utility } from "./app-utility.js";
 import { QuickView } from "./quick-view.js";
+
+const imp = new Import();
+imp.cardTemplate();
+imp.quickViewTemplate();
 
 export class Movie extends QuickView{
 	constructor(id){
@@ -12,8 +17,7 @@ export class Movie extends QuickView{
 		var card = document.querySelectorAll("#movieCard")[0];
 		var mainSection = document.getElementsByClassName('movies_list')[idx];
 		for(let [index, movie] of movieList.entries()){
-			if (index < items){
-
+			if (index < items){				
 				let cloneCard = document.importNode(card.content, true);
 				
 				cloneCard.querySelectorAll(".card__title span")[0].textContent  = movie.original_title;
@@ -30,7 +34,7 @@ export class Movie extends QuickView{
 					loadDetailAPI(movie.id);
 				});
 				
-				cloneCard.querySelectorAll(".card__desc")[0].textContent  = utility.getGenres(movie.genre_ids);
+				cloneCard.querySelectorAll(".card__desc")[0].textContent  = utility.loadGenres(movie.genre_ids);
 				cloneCard.querySelectorAll(".card__rating span")[0].innerHTML = utility.movieRating(movie.vote_average);
 				
 				let favourite = cloneCard.querySelectorAll(".fa")[0];

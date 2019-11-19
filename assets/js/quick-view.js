@@ -15,7 +15,10 @@ export class QuickView{
         var casts = data.credits.cast.length;
         var castNames = [];
         for(let i = 0 ; i < casts ; i++){
-            castNames.push(data.credits.cast[i].name);
+            castNames.push(
+                `<a href='actor-details.html?castId=${data.credits.cast[i].id}'>
+                    ${data.credits.cast[i].name}
+                </a>`);
         }
     
         var crewLength = data.credits.crew.length;

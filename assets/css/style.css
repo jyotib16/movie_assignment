@@ -9,14 +9,6 @@ Date : 24 Oct 2019
 @import "./normalize.css";
 @import "./global.css";
 
-.container{
-	width:90%;
-	margin:1em auto;
-}
-.container-fluid{
-    width:97%;
-    margin:1em auto;
-}
 .section{
 	border:1px solid var(--theme-color);
 }
@@ -83,6 +75,13 @@ Date : 24 Oct 2019
 }
 .card__caption {
     padding: 1em;
+}
+.overlay__text {
+    font-size: 2em;
+    margin: 20%;
+    text-align: center;
+    color: #fff;
+    text-shadow: 0px 1px 3px #333;
 }
 .modal {
     background: rgba(0,0,0,0.4);
@@ -235,7 +234,7 @@ td span{
 .form__field {
     width: 40%;
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-end;
 }
 .form__input {
     width: 95%;
